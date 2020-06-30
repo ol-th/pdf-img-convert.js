@@ -1,4 +1,4 @@
-# pdf-to-image.js
+# pdf-img-convert.js
 **A pure javascript package to convert a PDF into images**
 
 **This package is powered mainly by Mozilla's [PDF.js](https://github.com/mozilla/pdf.js)**
