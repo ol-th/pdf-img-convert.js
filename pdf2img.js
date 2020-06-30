@@ -60,9 +60,9 @@ NodeCanvasFactory.prototype = {
   },
 };
 
-async function convert (pdf) {
+async function convert (pdf, conversion_config = {}) {
 
-// Get the PDF in Uint8Array form
+  // Get the PDF in Uint8Array form
 
   let pdfData = pdf;
 
@@ -87,55 +87,76 @@ async function convert (pdf) {
     pdfData = new Uint8Array(pdf);
   }
 
-  console.log(pdfData);
-
   // At this point, we want to convert the pdf data into a 2D array representing
   // the images (indexed like array[page][pixel])
+
   var outputPages = [];
   var loadingTask = pdfjs.getDocument({data: pdfData, disableFontFace:false});
 
   var pdfDocument = await loadingTask.promise
 
-  console.log("# PDF document loaded.");
-
   var canvasFactory = new NodeCanvasFactory();
-  //Loop over each page in the doc
-  for (i = 1; i <= pdfDocument.numPages; i++) {
 
-    // Get the page.
-    let page = await pdfDocument.getPage(i);
+  if (conversion_config.height <= 0 || conversion_config.width <= 0)
+    console.error("Negative viewport dimension given. Defaulting to 100% scale.");
 
-    // Render the page on a Node canvas with 100% scale.
-    // TODO: allow to change the image scale here
-    let viewport = page.getViewport({ scale: 1.0 });
+  // If there are page numbers supplied in the conversion config
+  if (conversion_config.page_numbers)
+    for (i = 0; i < conversion_config.page_numbers.length; i++) {
+      // This just pushes a render of the page to the array
+      let currentPage = await doc_render(pdfDocument, conversion_config.page_numbers[i], canvasFactory, conversion_config)
+      if (currentPage != null) outputPages.push(new Uint8Array(currentPage));
+    }
+  // Otherwise just loop the whole doc
+  else
+    for (i = 1; i <= pdfDocument.numPages; i++) {
+      let currentPage = await doc_render(pdfDocument, i, canvasFactory, conversion_config)
+      if (currentPage != null) outputPages.push(new Uint8Array(currentPage));
+    }
 
-    let canvasAndContext = canvasFactory.create(
-      viewport.width,
-      viewport.height
-    );
+  return outputPages;
 
-    let renderContext = {
-      canvasContext: canvasAndContext.context,
-      viewport: viewport,
-      canvasFactory: canvasFactory
-    };
-
-    let renderTask = await page.render(renderContext).promise;
-    // Convert the canvas to an image buffer.
-    let image = canvasAndContext.canvas.toBuffer();
-
-    outputPages.push(new Uint8Array(image));
-
-    fs.writeFile("output"+i+".png", image, function (error) {
-      if (error) {
-        console.error("Error: " + error);
-      }
-      else {
-        console.log( "Finished converting first page of PDF file to a PNG image.");
-      }
-    }); //writeFile
-  } //for loop
 } // convert method
 
+async function doc_render(pdfDocument, pageNo, canvasFactory, conversion_config) {
 
-convert('https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf');
+  // Page number sanity check
+  if (pageNo < 1 || pageNo > pdfDocument.numPages) {
+    console.error("Invalid page number " + pageNo);
+    return
+  }
+
+  // Get the page
+  let page = await pdfDocument.getPage(pageNo);
+
+  // Create a viewport at 100% scale
+  let outputScale = 1.0;
+  let viewport = page.getViewport({ scale: outputScale });
+
+  // Scale it up / down dependent on the sizes given in the config (if there
+  // are any)
+  if (conversion_config.width)
+    outputScale = conversion_config.width / viewport.width;
+  else if (conversion_config.height)
+    outputScale = conversion_config.height / viewport.height;
+  if (outputScale != 1 && outputScale > 0)
+    viewport = page.getViewport({ scale: outputScale });
+
+  let canvasAndContext = canvasFactory.create(
+    viewport.width,
+    viewport.height
+  );
+
+  let renderContext = {
+    canvasContext: canvasAndContext.context,
+    viewport: viewport,
+    canvasFactory: canvasFactory
+  };
+
+  let renderTask = await page.render(renderContext).promise;
+
+  // Convert the canvas to an image buffer.
+  let image = canvasAndContext.canvas.toBuffer();
+
+  return image;
+} // doc_render
