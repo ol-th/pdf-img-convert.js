@@ -1,0 +1,31 @@
+{
+  "name": "pdf2img",
+  "version": "1.0.0",
+  "description": "Simple node package to convert a pdf file into an image",
+  "main": "pdf2img.js",
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "is-url": "^1.2.4",
+    "node-fetch": "^2.6.0",
+    "pdfjs-dist": "^2.4.456"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Tests not yet implemented - feel free to submit a pull request with some on the github project\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olliet88/pdf2img.js.git"
+  },
+  "keywords": [
+    "pdf",
+    "image",
+    "png"
+  ],
+  "author": "Oliver Thwaites",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/olliet88/pdf2img.js/issues"
+  },
+  "homepage": "https://github.com/olliet88/pdf2img.js#readme"
+}

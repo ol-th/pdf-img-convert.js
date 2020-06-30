@@ -60,7 +60,7 @@ NodeCanvasFactory.prototype = {
   },
 };
 
-module.exports.convert = async function (pdf, conversion_config = {}) => {
+module.exports.convert = async function (pdf, conversion_config = {}) {
 
   // Get the PDF in Uint8Array form
 
