@@ -94,51 +94,48 @@ async function convert (pdf) {
   var outputPages = [];
   var loadingTask = pdfjs.getDocument({data: pdfData, disableFontFace:false});
 
-  loadingTask.promise
-  .then(function (pdfDocument) {
+  var pdfDocument = await loadingTask.promise
 
-    console.log("# PDF document loaded.");
+  console.log("# PDF document loaded.");
 
-    var canvasFactory = new NodeCanvasFactory();
-    //Loop over each page in the doc
-    for (i = 1; i <= pdfDocument.numPages; i++) {
+  var canvasFactory = new NodeCanvasFactory();
+  //Loop over each page in the doc
+  for (i = 1; i <= pdfDocument.numPages; i++) {
 
-      // Get the page.
-      pdfDocument.getPage(i).then(function (page) {
-        // Render the page on a Node canvas with 100% scale.
-        // TODO: allow to change the image scale here
-        let viewport = page.getViewport({ scale: 1.0 });
-        let canvasAndContext = canvasFactory.create(
-          viewport.width,
-          viewport.height
-        );
-        let renderContext = {
-          canvasContext: canvasAndContext.context,
-          viewport: viewport,
-          canvasFactory: canvasFactory
-        };
-        let renderTask = page.render(renderContext);
-        renderTask.promise.then(function () {
-          // Convert the canvas to an image buffer.
-          let image = canvasAndContext.canvas.toBuffer();
-          outputPages.push(image);
-          fs.writeFile("output"+i+".png", image, function (error) {
-            if (error) {
-              console.error("Error: " + error);
-            } else {
-              console.log(
-                "Finished converting first page of PDF file to a PNG image."
-              );
-            }
-          });
-        });
-      });
-    }
-  })
-  .catch(function (reason) {
-    console.log(reason);
-  });
-}
+    // Get the page.
+    let page = await pdfDocument.getPage(i);
+
+    // Render the page on a Node canvas with 100% scale.
+    // TODO: allow to change the image scale here
+    let viewport = page.getViewport({ scale: 1.0 });
+
+    let canvasAndContext = canvasFactory.create(
+      viewport.width,
+      viewport.height
+    );
+
+    let renderContext = {
+      canvasContext: canvasAndContext.context,
+      viewport: viewport,
+      canvasFactory: canvasFactory
+    };
+
+    let renderTask = await page.render(renderContext).promise;
+    // Convert the canvas to an image buffer.
+    let image = canvasAndContext.canvas.toBuffer();
+
+    outputPages.push(new Uint8Array(image));
+
+    fs.writeFile("output"+i+".png", image, function (error) {
+      if (error) {
+        console.error("Error: " + error);
+      }
+      else {
+        console.log( "Finished converting first page of PDF file to a PNG image.");
+      }
+    }); //writeFile
+  } //for loop
+} // convert method
 
 
 convert('https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf');
