@@ -23,7 +23,7 @@ The package returns an `Array` of `Uint8Array` objects, each of which represents
 Here are some examples of its usage - obviously import the module first:
 
 ```javascript
-var pdf2img = require('pdf-to-image.js');
+var pdf2img = require('pdf-img-convert');
 ```
 
 **NB: convert is an asynchronous function so returns a `promise` object.**
