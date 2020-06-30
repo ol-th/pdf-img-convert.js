@@ -72,7 +72,7 @@ There is also an optional conversion_config argument which expects an object lik
 }
 ```
 
-* `width` or `height` control the scale of the document - One or the other, it ignores height if width is supplied too.
+* `width` or `height` control the scale of the output images - One or the other, it ignores height if width is supplied too.
 
 * `page_numbers` controls which pages are rendered - pages are 1-indexed.
 
