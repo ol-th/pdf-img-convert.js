@@ -1,4 +1,4 @@
-var pdf2img = require("./pdf-to-image.js");
+var pdf2img = require("./pdf-img-convert.js");
 var fs = require("fs");
 
 // var output = pdf2img.convert('https://gahp.net/wp-content/uploads/2017/09/sample.pdf')
