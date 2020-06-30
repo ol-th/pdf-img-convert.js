@@ -31,8 +31,8 @@ Here's an example of how to use it in synchronous code:
 
 ```javascript
 // Both HTTP and local paths are supported
-var outputImages1 = pdf2img.convert("http://www.example.com/pdf_online.pdf");
-var outputImages2 = pdf2img.convert("../pdf_in_local_filesystem.pdf");
+var outputImages1 = pdf2img.convert('http://www.example.com/pdf_online.pdf');
+var outputImages2 = pdf2img.convert('../pdf_in_local_filesystem.pdf');
 
 // From here, the images can be used for other stuff or just saved if that's required:
 
@@ -51,7 +51,7 @@ It's a lot easier and cleaner to implement inside an `async function` using `awa
 ```javascript
 
 (async function () {
-  pdfArray = await pdf2img.convert('https://gahp.net/wp-content/uploads/2017/09/sample.pdf');
+  pdfArray = await pdf2img.convert('http://www.example.com/pdf_online.pdf');
   console.log("saving");
   for (i = 0; i < pdfArray.length; i++){
     fs.writeFile("output"+i+".png", pdfArray[i], function (error) {
