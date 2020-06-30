@@ -20,11 +20,16 @@ npm install pdf2img
 
 The package returns an `Array` of `Uint8Array` objects, each of which represents an image encoded in png format.
 
-Here are some examples of its usage:
+Here are some examples of its usage - obviously import the module first:
 
 ```javascript
 var pdf2img = require('pdf2img.js');
+```
 
+**NB: convert is an asynchronous function so returns a `promise` object.**
+Here's an example of how to use it in synchronous code:
+
+```javascript
 // Both HTTP and local paths are supported
 var outputImages1 = pdf2img.convert("http://www.example.com/pdf_online.pdf");
 var outputImages2 = pdf2img.convert("../pdf_in_local_filesystem.pdf");
@@ -33,10 +38,28 @@ var outputImages2 = pdf2img.convert("../pdf_in_local_filesystem.pdf");
 
 var fs = require('fs');
 
-for (i = 0; i < outputImages.length; i++)
-    fs.writeFile("output"+i+".png", outputImages[i], function (error) {
-      if (error) { console.error("Error: " + error); }
+outputImages1.then(function(outputImages) {
+    for (i = 0; i < outputImages.length; i++)
+        fs.writeFile("output"+i+".png", outputImages[i], function (error) {
+          if (error) { console.error("Error: " + error); }
+        });
     });
+```
+
+It's a lot easier and cleaner to implement inside an `async function` using `await`:
+
+```javascript
+
+(async function () {
+  pdfArray = await pdf2img.convert('https://gahp.net/wp-content/uploads/2017/09/sample.pdf');
+  console.log("saving");
+  for (i = 0; i < pdfArray.length; i++){
+    fs.writeFile("output"+i+".png", pdfArray[i], function (error) {
+      if (error) { console.error("Error: " + error); }
+    }); //writeFile
+  } // for
+})();
+
 ```
 
 There is also an optional conversion_config argument which expects an object like this:
@@ -52,3 +75,5 @@ There is also an optional conversion_config argument which expects an object lik
 * `width` or `height` control the scale of the document - One or the other, it ignores height if width is supplied too.
 
 * `page_numbers` controls which pages are rendered - pages are 1-indexed.
+
+Any of these attributes can be omitted from the object - they're all optional.
