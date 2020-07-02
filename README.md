@@ -13,7 +13,7 @@ This solution solely uses javascript arrays, cleaning up the pipeline significan
 ## Installation
 
 ```bash
-npm install pdf2img
+npm install pdf-img-convert
 ```
 
 ## Usage
