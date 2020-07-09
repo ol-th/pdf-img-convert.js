@@ -76,4 +76,6 @@ There is also an optional conversion_config argument which expects an object lik
 
 * `page_numbers` controls which pages are rendered - pages are 1-indexed.
 
+* `base64` should be set to `true` if a base64-encoded image output is required. Otherwise it'll just output an array of `Uint8Array`s.
+
 Any of these attributes can be omitted from the object - they're all optional.
