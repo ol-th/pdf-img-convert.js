@@ -1,4 +1,4 @@
-# pdf-to-image.js
+# pdf-img-convert.js
 **A pure javascript package to convert a PDF into images**
 
 **This package is powered mainly by Mozilla's [PDF.js](https://github.com/mozilla/pdf.js)**
@@ -13,7 +13,7 @@ This solution solely uses javascript arrays, cleaning up the pipeline significan
 ## Installation
 
 ```bash
-npm install pdf2img
+npm install pdf-img-convert
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ The package returns an `Array` of `Uint8Array` objects, each of which represents
 Here are some examples of its usage - obviously import the module first:
 
 ```javascript
-var pdf2img = require('pdf-to-image.js');
+var pdf2img = require('pdf-img-convert');
 ```
 
 **NB: convert is an asynchronous function so returns a `promise` object.**
