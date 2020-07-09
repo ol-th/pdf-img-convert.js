@@ -69,6 +69,7 @@ There is also an optional conversion_config argument which expects an object lik
   width: 100 //Number in px
   height: 100 // Number in px
   page_numbers: [1, 2, 3] // A list of pages to render instead of all of them
+  base64: True
 }
 ```
 
