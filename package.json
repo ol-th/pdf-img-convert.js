@@ -1,6 +1,6 @@
 {
   "name": "pdf-img-convert",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A simple module to convert PDF files into image buffers (without filesystem usage)",
   "main": "pdf-img-convert.js",
   "dependencies": {

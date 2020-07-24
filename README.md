@@ -26,7 +26,22 @@ Here are some examples of its usage - obviously import the module first:
 var pdf2img = require('pdf-img-convert');
 ```
 
-**NB: convert is an asynchronous function so returns a `promise` object.**
+The packages has 1 function - `convert`. It accepts the following pdf formats as input:
+
+* URL of a PDF (e.g. www.example.com/a.pdf)
+
+* Path to a local pdf file (e.g. ../example.pdf)
+
+* A `Buffer` object containing PDF data
+
+* A `Uint8Array` object containing PDF data
+
+* Base64-encoded PDF data
+
+**NB: it is an asynchronous function so returns a `promise` object.**
+
+The output can be manipulated using the `conversion_config` argument mentioned below.
+
 Here's an example of how to use it in synchronous code:
 
 ```javascript
@@ -62,7 +77,7 @@ It's a lot easier and cleaner to implement inside an `async function` using `awa
 
 ```
 
-There is also an optional conversion_config argument which expects an object like this:
+There is also an optional second `conversion_config` argument which accepts an object like this:
 
 ```javascript
 {
@@ -73,10 +88,10 @@ There is also an optional conversion_config argument which expects an object lik
 }
 ```
 
+(Any of these attributes can be omitted from the object - they're all optional)
+
 * `width` or `height` control the scale of the output images - One or the other, it ignores height if width is supplied too.
 
 * `page_numbers` controls which pages are rendered - pages are 1-indexed.
 
 * `base64` should be set to `true` if a base64-encoded image output is required. Otherwise it'll just output an array of `Uint8Array`s.
-
-Any of these attributes can be omitted from the object - they're all optional.

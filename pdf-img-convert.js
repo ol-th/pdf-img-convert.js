@@ -30,7 +30,7 @@ const assert = require("assert").strict;
 const fs = require("fs");
 const util = require('util');
 
-const readFile= util.promisify(fs.readFile);
+const readFile = util.promisify(fs.readFile);
 
 function NodeCanvasFactory() {}
 NodeCanvasFactory.prototype = {
@@ -69,25 +69,28 @@ module.exports.convert = async function (pdf, conversion_config = {}) {
 
   let pdfData = pdf;
 
-  if (typeof pdf === 'undefined') {
-    return pdf;
-  }
-
   if (typeof pdf === 'string') {
-
+    // Support for URL input
     if (isURL(pdf) || pdf.startsWith('moz-extension://') || pdf.startsWith('chrome-extension://') || pdf.startsWith('file://')) {
       const resp = await fetch(pdf);
       pdfData = new Uint8Array(await resp.arrayBuffer());
     }
+    // Support for base64 encoded pdf input
     else if (/pdfData:pdf\/([a-zA-Z]*);base64,([^"]*)/.test(pdf)) {
       pdfData = new Uint8Array(Buffer.from(pdf.split(',')[1], 'base64'));
     }
+    // Support for filepath input
     else {
       pdfData = new Uint8Array(await readFile(pdf));
     }
   }
+  // Support for buffer input
   else if (Buffer.isBuffer(pdf)) {
     pdfData = new Uint8Array(pdf);
+  }
+  // Support for Uint8Array input
+  else if (!pdf instanceof Uint8Array) {
+    return pdf;
   }
 
   // At this point, we want to convert the pdf data into a 2D array representing
