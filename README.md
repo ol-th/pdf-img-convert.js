@@ -26,7 +26,7 @@ Here are some examples of its usage - obviously import the module first:
 var pdf2img = require('pdf-img-convert');
 ```
 
-The packages has 1 function - `convert`. It accepts the following pdf formats as input:
+The package has 1 function - `convert`. It accepts the following pdf formats as input:
 
 * URL of a PDF (e.g. www.example.com/a.pdf)
 
