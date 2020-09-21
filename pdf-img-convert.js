@@ -89,7 +89,7 @@ module.exports.convert = async function (pdf, conversion_config = {}) {
     pdfData = new Uint8Array(pdf);
   }
   // Support for Uint8Array input
-  else if (!pdf instanceof Uint8Array) {
+  else if (!(pdf instanceof Uint8Array)) {
     return pdf;
   }
 
