@@ -22,9 +22,9 @@ SOFTWARE.
 
 */
 
-const fetch = require('node-fetch');
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const isURL = require('is-url');
-const pdfjs = require('pdfjs-dist/es5/build/pdf.js');
+const pdfjs = require('pdfjs-dist/legacy/build/pdf.js');
 const Canvas = require("canvas");
 const assert = require("assert").strict;
 const fs = require("fs");
