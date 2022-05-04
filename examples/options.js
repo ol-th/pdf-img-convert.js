@@ -9,7 +9,7 @@ var fs = require("fs");
     base64: true // Convert to base64 encoded image
   }
 
-  pdfArray = await pdf2img.convert('https://gahp.net/wp-content/uploads/2017/09/sample.pdf', options);
+  pdfArray = await pdf2img.convert('http://www.africau.edu/images/default/sample.pdf', options);
   console.log("Saving");
   for (i = 0; i < pdfArray.length; i++){
     fs.writeFile("./outputImages/output"+i+".png", pdfArray[i], function (error) {
