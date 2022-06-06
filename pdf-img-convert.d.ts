@@ -12,4 +12,4 @@ declare function convert (
   }
 ): (string|Uint8Array)[]
 
-export default { convert }
+export = { convert }
