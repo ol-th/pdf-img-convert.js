@@ -1,4 +1,4 @@
-module.exports.convert = async function (
+declare function convert (
   pdf: string|Uint8Array|Buffer,
   conversion_config?: {
     /** Number in px */
@@ -10,4 +10,6 @@ module.exports.convert = async function (
     /** Output as base64 */
     base64: boolean
   }
-): (string|Uint8Array)[] {}
+): (string|Uint8Array)[]
+
+export default { convert }
