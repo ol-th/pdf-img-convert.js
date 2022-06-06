@@ -8,7 +8,7 @@
     "canvas": "^2.9.1",
     "is-url": "^1.2.4",
     "node-fetch": "^2.6.7",
-    "pdfjs-dist": "^2.13.216"
+    "pdfjs-dist": "^2.14.305"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
