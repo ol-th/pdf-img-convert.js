@@ -2,7 +2,7 @@ var pdf2img = require("../pdf-img-convert.js");
 var fs = require("fs");
 
 // This returns a promise as it's an async function
-var output = pdf2img.convert('http://www.africau.edu/images/default/sample.pdf');
+var output = pdf2img.convert('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf');
 
 // Acting on this promise when it's fulfilled:
 output.then(function(pdfArray) {

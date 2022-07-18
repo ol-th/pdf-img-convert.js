@@ -22,7 +22,7 @@ SOFTWARE.
 
 */
 
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+const fetch = require('node-fetch');
 const isURL = require('is-url');
 const pdfjs = require('pdfjs-dist/legacy/build/pdf.js');
 const Canvas = require("canvas");
@@ -89,7 +89,7 @@ module.exports.convert = async function (pdf, conversion_config = {}) {
     pdfData = new Uint8Array(pdf);
   }
   // Support for Uint8Array input
-  else if (!pdf instanceof Uint8Array) {
+  else if (!(pdf instanceof Uint8Array)) {
     return pdf;
   }
 
@@ -97,9 +97,10 @@ module.exports.convert = async function (pdf, conversion_config = {}) {
   // the images (indexed like array[page][pixel])
 
   var outputPages = [];
-  var loadingTask = pdfjs.getDocument({data: pdfData, disableFontFace: false, verbosity: 0});
 
-  var pdfDocument = await loadingTask.promise
+  var loadingTask = pdfjs.getDocument({data: pdfData});
+
+  var pdfDocument = await loadingTask.promise;
 
   var canvasFactory = new NodeCanvasFactory();
 
