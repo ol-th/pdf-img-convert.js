@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 (async function () {
 
   // Getting a uint8array
-  var resp = await fetch('http://www.africau.edu/images/default/sample.pdf');
+  var resp = await fetch('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf');
   pdfData = new Uint8Array(await resp.arrayBuffer());
 
   // Converting it and saving
