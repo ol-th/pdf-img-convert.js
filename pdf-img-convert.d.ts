@@ -9,6 +9,8 @@ declare function convert (
     page_numbers?: number[]
     /** Output as base64 */
     base64?: boolean
+    /** Viewport scale as ratio */
+    scale?: number
   }
 ): Promise<string[]|Uint8Array[]>
 
