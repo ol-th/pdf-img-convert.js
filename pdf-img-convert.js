@@ -97,7 +97,7 @@ module.exports.convert = async function (pdf, conversion_config = {}) {
   // the images (indexed like array[page][pixel])
 
   var outputPages = [];
-  var loadingTask = pdfjs.getDocument({data: pdfData, disableFontFace: false, verbosity: 0});
+  var loadingTask = pdfjs.getDocument({data: pdfData, disableFontFace: true, verbosity: 0});
 
   var pdfDocument = await loadingTask.promise
 
