@@ -10,6 +10,6 @@ declare function convert (
     /** Output as base64 */
     base64?: boolean
   }
-): (string|Uint8Array)[]
+): Promise<string[]|Uint8Array[]>
 
 export = { convert }
