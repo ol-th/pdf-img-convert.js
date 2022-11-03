@@ -95,3 +95,9 @@ There is also an optional second `conversion_config` argument which accepts an o
 * `page_numbers` controls which pages are rendered - pages are 1-indexed.
 
 * `base64` should be set to `true` if a base64-encoded image output is required. Otherwise it'll just output an array of `Uint8Array`s.
+
+## Contributing
+
+If you'd like to contribute, please do submit a pull request!
+
+Once you've finalised your changes, please include a summary of these changes under the `[Unreleased]` section of `CHANGELOG.md` in [this](https://keepachangelog.com/en/1.0.0/) format.
