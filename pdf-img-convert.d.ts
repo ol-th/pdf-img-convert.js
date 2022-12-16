@@ -1,4 +1,4 @@
-declare function convert (
+export function convert (
   pdf: string|Uint8Array|Buffer,
   conversion_config?: {
     /** Number in px */
@@ -11,5 +11,3 @@ declare function convert (
     base64?: boolean
   }
 ): Promise<string[]|Uint8Array[]>
-
-export = { convert }
