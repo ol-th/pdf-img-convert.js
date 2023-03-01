@@ -12,4 +12,4 @@ declare function convert (
   }
 ): Promise<string[]|Uint8Array[]>
 
-export = { convert }
+export {convert}
