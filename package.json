@@ -10,6 +10,10 @@
     "node-fetch": "^2.6.7",
     "pdfjs-dist": "^2.14.305"
   },
+  "files": [
+    "pdf-img-convert.d.ts",
+    "pdf-img-convert.js"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
