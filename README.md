@@ -84,7 +84,8 @@ There is also an optional second `conversion_config` argument which accepts an o
   width: 100 //Number in px
   height: 100 // Number in px
   page_numbers: [1, 2, 3] // A list of pages to render instead of all of them
-  base64: True
+  base64: True,
+  scale: 2.0
 }
 ```
 
@@ -95,6 +96,8 @@ There is also an optional second `conversion_config` argument which accepts an o
 * `page_numbers` controls which pages are rendered - pages are 1-indexed.
 
 * `base64` should be set to `true` if a base64-encoded image output is required. Otherwise it'll just output an array of `Uint8Array`s.
+
+* `scale` is the viewport scale ratio, which defaults to 1 (original width and height).
 
 ## Contributing
 
