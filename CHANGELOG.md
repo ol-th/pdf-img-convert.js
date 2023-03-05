@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 1.1.2 - 2023-03-05
+
 ## 1.1.1 - 2022-11-03
 ### Changed
 - Fix return type in `d.ts`
