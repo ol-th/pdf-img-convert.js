@@ -108,7 +108,7 @@ module.exports.convert = async function (pdf, conversion_config = {}) {
 
   // If there are page numbers supplied in the conversion config
   if (conversion_config.page_numbers)
-    for (i = 0; i < conversion_config.page_numbers.length; i++) {
+    for (let i = 0; i < conversion_config.page_numbers.length; i++) {
       // This just pushes a render of the page to the array
       let currentPage = await doc_render(pdfDocument, conversion_config.page_numbers[i], canvasFactory, conversion_config);
       if (currentPage != null) {
@@ -121,7 +121,7 @@ module.exports.convert = async function (pdf, conversion_config = {}) {
     }
   // Otherwise just loop the whole doc
   else
-    for (i = 1; i <= pdfDocument.numPages; i++) {
+    for (let i = 1; i <= pdfDocument.numPages; i++) {
       let currentPage = await doc_render(pdfDocument, i, canvasFactory, conversion_config)
       if (currentPage != null) {
         // This allows for base64 conversion of output images
