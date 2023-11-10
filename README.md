@@ -81,11 +81,12 @@ There is also an optional second `conversion_config` argument which accepts an o
 
 ```javascript
 {
-  width: 100 //Number in px
+  width: 100 // Number in px
   height: 100 // Number in px
   page_numbers: [1, 2, 3] // A list of pages to render instead of all of them
   base64: True,
-  scale: 2.0
+  scale: 2.0, // scaled twice as large
+  intent: 'print' // can choose 'display' (default), 'print' (higher DPI of resulting images), or 'any'
 }
 ```
 
@@ -98,6 +99,8 @@ There is also an optional second `conversion_config` argument which accepts an o
 * `base64` should be set to `true` if a base64-encoded image output is required. Otherwise it'll just output an array of `Uint8Array`s.
 
 * `scale` is the viewport scale ratio, which defaults to 1 (original width and height).
+
+* `intent` is how you intend to use the resulting images, with 'display' as the default, 'print' giving a higher DPI for more print-worthy graphics, or 'any'
 
 ## Contributing
 
