@@ -11,6 +11,8 @@ declare function convert (
     base64?: boolean
     /** Viewport scale as ratio */
     scale?: number
+    /** renderContext accepts 'intent' which supports three values: 'display' (default DPI), 'print' (higher DPI) or 'any'. */
+    intent?: string
   }
 ): Promise<string[]|Uint8Array[]>
 
