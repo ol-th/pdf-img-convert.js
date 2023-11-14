@@ -29,6 +29,7 @@ const Canvas = require("canvas");
 const assert = require("assert").strict;
 const fs = require("fs");
 const util = require('util');
+const path = require('path');
 
 const readFile = util.promisify(fs.readFile);
 
@@ -96,8 +97,10 @@ module.exports.convert = async function (pdf, conversion_config = {}) {
   // At this point, we want to convert the pdf data into a 2D array representing
   // the images (indexed like array[page][pixel])
 
+  var packagePath = path.dirname(require.resolve("pdfjs-dist/package.json"));
+
   var outputPages = [];
-  var loadingTask = pdfjs.getDocument({data: pdfData, disableFontFace: true, verbosity: 0});
+  var loadingTask = pdfjs.getDocument({data: pdfData, disableFontFace: true, verbosity: 0, standardFontDataUrl: packagePath + '/standard_fonts/'});
 
   var pdfDocument = await loadingTask.promise
 
