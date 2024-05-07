@@ -8,7 +8,7 @@
     "canvas": "^2.10.2",
     "is-url": "^1.2.4",
     "node-fetch": "^2.6.7",
-    "pdfjs-dist": "^2.14.305"
+    "pdfjs-dist": "^4.2.67"
   },
   "files": [
     "pdf-img-convert.d.ts",
