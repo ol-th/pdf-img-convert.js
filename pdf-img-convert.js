@@ -144,8 +144,14 @@ async function doc_render(pdfDocument, pageNo, canvasFactory, conversion_config)
     return
   }
 
-  if(conversion_config && conversion_config.scale && conversion_config.scale <= 0) {
+  if (conversion_config && conversion_config.scale && conversion_config.scale <= 0) {
     console.error("Invalid scale " + conversion_config.scale);
+    return
+  }
+
+  // renderContext accepts 'intent' which supports three values: 'display' (default DPI), 'print' (higher DPI) or 'any'.
+  if (conversion_config && conversion_config.intent && ((conversion_config.intent !== 'display') && (conversion_config.intent !== 'print') && (conversion_config.intent !== 'any')) ) {
+    console.error("Invalid intent " + conversion_config.intent);
     return
   }
 
@@ -170,10 +176,14 @@ async function doc_render(pdfDocument, pageNo, canvasFactory, conversion_config)
     viewport.height
   );
 
+  // 'display' is the default but it has a hardcoded lower DPI, whereas 'print' will increase the DPI of resulting images
+  let intent = conversion_config.intent || 'display';
+
   let renderContext = {
     canvasContext: canvasAndContext.context,
     viewport: viewport,
-    canvasFactory: canvasFactory
+    canvasFactory: canvasFactory,
+    intent: intent
   };
 
   let renderTask = await page.render(renderContext).promise;
