@@ -11,6 +11,8 @@ declare function convert (
     base64?: boolean
     /** Viewport scale as ratio */
     scale?: number
+    /** Controls the `isEvalSupported` parameter of `pdf-js`. Defaults to `true`. */
+    isEvalSupported?: boolean
   }
 ): Promise<string[]|Uint8Array[]>
 
