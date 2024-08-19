@@ -81,10 +81,10 @@ There is also an optional second `conversion_config` argument which accepts an o
 
 ```javascript
 {
-  width: 100 //Number in px
-  height: 100 // Number in px
-  page_numbers: [1, 2, 3] // A list of pages to render instead of all of them
-  base64: True,
+  width: 100, //Number in px
+  height: 100, // Number in px
+  page_numbers: [1, 2, 3], // A list of pages to render instead of all of them
+  base64: true,
   scale: 2.0
 }
 ```
