@@ -55,7 +55,7 @@ async function processPDFs() {
 
     // OUTPUT OPTIONS ARRAY
     const outputs = [outputWithExternalLink, outputWithLocalSample];
-    // Select the desired output for testing
+    
     const pdfArray = outputs[0]; // Change the index to select different outputs
 
     function saveImages(pdfArray) {
@@ -70,11 +70,9 @@ async function processPDFs() {
             });
         });
     }
-
     // Call the function to save images
     saveImages(pdfArray);
 }
-
 // Call the async function
 processPDFs();
 ```
@@ -84,20 +82,14 @@ Here's an example of how to use it in synchronous code, `base64-encoded` output 
 import fs from 'fs';
 import path from 'path';
 
-// Local paths to PDF document
 let config = {
     base64: true,
     scale: 2
 };
-
 async function processPDF() {
     const pdf2img = await import("pdf-img-convert");
     const outputWithLocalSampleAndConfig = await pdf2img.convert('./examples/example.pdf', config);
-
-    // OUTPUT OPTIONS ARRAY
-    // Select the desired output for testing
-    const pdfArray = outputWithLocalSampleAndConfig; // Change the index to select different outputs
-
+    const pdfArray = outputWithLocalSampleAndConfig;
     function saveBase64Images(pdfArray) {
         console.log('Processing base64Images...');
         pdfArray.forEach((base64Data, index) => {
@@ -115,47 +107,11 @@ async function processPDF() {
             });
         });
     }
-
     // Example usage: call this function with the Base64 array
     saveBase64Images(pdfArray);
 }
-
 // Call the async function
 processPDF();
-```
-It's a lot easier and cleaner to implement inside an `async function` using `await`:
-
-```javascript
-import fs from 'fs';
-import path from 'path';
-// These are "optional" config options you can pass to convert
-let config = {
-    scale: 1,
-    base64: false
-};
-// Normal IIFE
-(async function () {
-    try {
-        // Dynamically import the pdf2img module
-        const pdf2img = await import("pdf-img-convert");
-        // Convert the PDF file to an array of images
-        const pdfArray = await pdf2img.convert('./test_pdfs/sample.pdf', config);
-        console.log('Processing images...');
-        // Save each image from the pdfArray
-        pdfArray.forEach((imageData, index) => {
-            const outputPath = path.join('./outputImages', `basic_sample_${index}.png`);
-            fs.writeFile(outputPath, imageData, (error) => {
-                if (error) {
-                    console.error(`Error saving image ${index + 1}:`, error);
-                } else {
-                    console.log(`Image ${index + 1} saved successfully`);
-                }
-            });
-        });
-    } catch (error) {
-        console.error('An error occurred:', error);
-    }
-})();
 ```
 
 Here's an example of how to use it in Next.js api folder, `base64-encoded` output as the chosen option:
@@ -189,8 +145,6 @@ const writeToDir = async (imageData, fileName, filePath) => {
         return null;
     }
 };
-
-
 export const POST = async (req: NextRequest) => {
     const pdf2img = await import("pdf-img-convert");
     const formData = await req.formData();
