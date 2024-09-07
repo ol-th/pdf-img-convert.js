@@ -26,9 +26,9 @@ const pdf2img = await import("pdf-img-convert");
 ```
 The package provides a single function, convert, which accepts the following PDF formats as input:
 
-* URL of a PDF (e.g., www.example.com/a.pdf)
+* URL of a PDF (e.g., www.example.com/sample.pdf)
 
-* Path to a local PDF file (e.g., ./examples/example.pdf)
+* Path to a local PDF file (e.g., ./examples/sample.pdf)
 
 * A `Buffer` object containing PDF data
 
