@@ -1,0 +1,27 @@
+{
+  "name": "pdf-img-convert",
+  "version": "1.2.1",
+  "description": "A simple module to convert PDF files into image buffers (without filesystem usage)",
+  "main": "basic_example.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "dependencies": {
+    "canvas": "^2.11.2",
+    "express": "^4.19.2",
+    "is-url": "^1.2.4",
+    "node-fetch": "^3.3.2",
+    "pdfjs-dist": "^4.6.82"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ol-th/pdf-img-convert.js.git"
+  },
+  "contributors": [
+    {
+      "name": "Samm waturu",
+      "email": "velop.acc@gmail.com"
+    }
+  ]
+}

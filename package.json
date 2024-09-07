@@ -5,10 +5,10 @@
   "main": "pdf-img-convert.js",
   "types": "pdf-img-convert.d.ts",
   "dependencies": {
-    "canvas": "^2.10.2",
+    "canvas": "^2.11.2",
     "is-url": "^1.2.4",
-    "node-fetch": "^2.6.7",
-    "pdfjs-dist": "^2.14.305"
+    "node-fetch": "^3.3.2",
+    "pdfjs-dist": "^4.6.82"
   },
   "files": [
     "pdf-img-convert.d.ts",
@@ -26,12 +26,24 @@
     "img",
     "image",
     "png",
-    "convert"
+    "convert",
+    "module",
+    "es6",
+    "esm"
   ],
   "author": "Oliver Thwaites",
   "license": "MIT",
+  "contributors": [
+    {
+      "name": "Samm waturu",
+      "email": "velop.acc@gmail.com"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/ol-th/pdf-img-convert.js/issues"
   },
-  "homepage": "https://github.com/ol-th/pdf-img-convert.js#readme"
+  "homepage": "https://github.com/ol-th/pdf-img-convert.js#readme",
+  "directories": {
+    "example": "examples"
+  }
 }
