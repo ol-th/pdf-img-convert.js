@@ -11,7 +11,7 @@ const readFile = util.promisify(fs.readFile);
 
 // Set the full path to the worker
 // Crucial for ES6 module-based frameworks such as Next.js
-GlobalWorkerOptions.workerSrc = 'pdf-img-convert/node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs';
+GlobalWorkerOptions.workerSrc = 'pdfjs-dist/legacy/build/pdf.worker.mjs';
 
 // Canvas Factory for Node.js
 function NodeCanvasFactory() {}
