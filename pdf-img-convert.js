@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import isURL from 'is-url';
-import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist/legacy/build/pdf';
+import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist/legacy/build/pdf.mjs';
 import * as Canvas from 'canvas';
 import assert from 'assert';
 import fs from 'fs';
