@@ -5,8 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [Unreleased]
+
 ### Added
+
 - **ES6 Module Support**: Switched from `require()` to ES6 `import` for better compatibility with modern JavaScript frameworks.
 - **Parallel Page Rendering**: Introduced parallel rendering of PDF pages using `Promise.all()` for improved performance.
 - **GlobalWorkerOptions Setup**: Added explicit `GlobalWorkerOptions.workerSrc` to handle workers in ES6 environments more effectively.
@@ -15,11 +17,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Updated `package.json` Keywords**: Added new keywords such as `es6`, `esm`, and `module`  to improve discoverability in modern JavaScript environments.
 
 ### Fixed
+
 - **Security**: Addressed a critical security vulnerability in previously used npm packages by updating `pdfjs-dist` to the latest versions.
 - **Scaling Logic**: Refined the handling of `width`, `height`, and `scale` parameters to cover more edge cases in image rendering.
 
-### Updated
+### Changed
+
 - **README**: Revised the `README.md` to reflect new features and usage examples.
+
 ## 1.2.1 - 2023-04-16
 
 ## 1.2.0 - 2023-03-05
