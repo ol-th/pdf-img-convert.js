@@ -128,8 +128,19 @@ async function docRender(pdfDocument, pageNo, canvasFactory, conversion_config) 
   };
 
   await page.render(renderContext).promise;
-  const image = canvasAndContext.canvas.toBuffer();
+  const imageFormat = conversion_config.format || 'png';  
 
+  let image;
+  switch(imageFormat) {
+    case 'jpeg':
+      image = canvasAndContext.canvas.toBuffer('image/jpeg');
+      break;
+    case 'webp':
+      image = canvasAndContext.canvas.toBuffer('image/webp');
+      break;
+    default:
+      image = canvasAndContext.canvas.toBuffer(); 
+  }
   // Properly destroy canvas resources
   canvasFactory.destroy(canvasAndContext);
 
