@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 2.1.0 - 2024-10-06
+### Added
+- **New file output formats**: Added support for multiple output formats such as JPEG, PNG, and WebP, rather than just Buffer and Base64.
 ## 2.0.0 - 2024-09-27
 ### Added
 - **ES6 Module Support**: Switched from `require()` to ES6 `import` for better compatibility with modern JavaScript frameworks.
